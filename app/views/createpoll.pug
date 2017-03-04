@@ -1,0 +1,30 @@
+include includes/head.pug
+include includes/navbar.pug
+
+
+
+h3.text-center Create Poll
+
+.container
+	form(action='/createpoll/new')
+		.form-group
+			label(for='poll_name') Poll Name
+			input(type='text' class='form-control' id='poll_name' placeholder='My Super Poll')
+		br
+		.form-group
+			label(for='poll_option1') Poll Answer 1
+			input(type='text' class='form-control' id='poll_name' placeholder='Awesome answer 1')
+		.form-group
+			label(for='poll_option2') Poll Answer 2
+			input(type='text' class='form-control' id='poll_name' placeholder='Awesome answer 2')
+		.form-group
+			label(for='poll_option3') Poll Answer 3
+			input(type='text' class='form-control' id='poll_name' placeholder='Awesome answer 3')
+		.form-group
+			label(for='poll_option4') Poll Answer 4
+			input(type='text' class='form-control' id='poll_name' placeholder='Awesome answer 4')
+		.form-group
+			label(for='submit-btn')
+			input(type='submit' class='btn btn-success' value='Submit')
+
+include includes/footer.pug

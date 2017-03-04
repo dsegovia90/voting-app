@@ -1,0 +1,26 @@
+nav.navbar.navbar-toggleable-md.navbar-inverse.fixed-top.bg-inverse
+	button(
+		class='navbar-toggler navbar-toggler-right'
+		type='button'
+		data-toggle='collapse' 
+		data-target='#navbarCollapse' 
+		aria-controls='navbarCollapse' 
+		aria-expanded='false' 
+		aria-label='Toggle navigation'
+	)
+		span.navbar-toggler-icon
+	a(class='navbar-brand' href='/') VoteApp-5000
+	#navbarCollapse.collapse.navbar-collapse
+		ul.navbar-nav.ml-auto
+			li.nav-item
+				a(class='nav-link justify-content-start' href='/') Home
+			if user
+				li.nav-item
+					a(class='nav-link' href='/mypolls') My Polls
+				li.nav-item
+					a(class='nav-link' href='/createpoll') Create Poll
+				li.nav-item
+					a(class='nav-link' href='/logout') Logout
+			if !user
+				li.nav-item
+					a(class='nav-link' href='/login') Login

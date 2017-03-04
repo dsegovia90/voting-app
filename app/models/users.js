@@ -1,7 +1,7 @@
 
 
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var mongoose = require('mongoose')
+var Schema = mongoose.Schema
 
 var User = new Schema({
 	github: {
@@ -10,6 +10,6 @@ var User = new Schema({
 		username: String,
       publicRepos: Number
 	}
-});
+})
 
-module.exports = mongoose.model('User', User);
+module.exports = mongoose.model('User', User)

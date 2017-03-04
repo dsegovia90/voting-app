@@ -1,2 +1,12 @@
 include includes/head.pug
 include includes/navbar.pug
+
+.text-center
+	if user
+		h3= user.github.displayName + '\'s Dashboard'
+	else
+		h3= 'Dashboard'
+
+	if user
+		p= 'Welcome ' + user.github.displayName
+include includes/footer.pug
