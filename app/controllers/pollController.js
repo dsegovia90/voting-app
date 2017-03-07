@@ -6,12 +6,7 @@ function PollHandler() {
 		console.log('creating a poll')
 		console.log(req.body)
 		var options = req.body.poll_options
-		for (i = 0; i < options.length; i++) {
-			if(options[i] === ''){
-				options.splice(i, 1)
-				i--
-			}
-		}
+		options = options.split(' ')
 		var options_votes = []
 		for(i = 0; i < options.length; i++){
 			options_votes.push(0)
