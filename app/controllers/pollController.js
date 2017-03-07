@@ -4,15 +4,12 @@ var Polls = require('../models/polls.js')
 function PollHandler() {
 
 	this.createPoll = function(req, res){
-		console.log('creating a poll')
-		console.log(req.body)
 		var options = req.body.poll_options
 		options = options.split(' ')
 		var options_votes = []
 		for(i = 0; i < options.length; i++){
 			options_votes.push(0)
 		}
-		console.log(options_votes)
 		var newPoll = new Polls()
 		newPoll.name = req.body.poll_name
 		newPoll.options = options
@@ -45,8 +42,6 @@ function PollHandler() {
 		Polls.find({owner_id: req.user._id}, function(err, db_mypolls){
 			if(err){throw err}
 			res.locals.mypolls = db_mypolls
-			console.log(db_mypolls.length)
-			console.log(typeof db_mypolls)
 			res.render('mypolls')
 		})
 	}
@@ -60,14 +55,12 @@ function PollHandler() {
 	}
 
 	this.vote = function(req, res) {
-		console.log(req.body)
 		var selector = req.body.selector
 		var query = 'options_votes.' + selector
 		var option = 1 + parseInt(selector)
 		req.flash('info', 'You voted for option ' + option + '.') 
 
 
-		console.log(typeof req.body.selector)
 		Polls.findOneAndUpdate({ _id: req.params._id}, { $inc: { [query]: 1 } }, function(err, result){
 			if(err) throw err
 
