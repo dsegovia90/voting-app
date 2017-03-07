@@ -3,5 +3,20 @@ include includes/navbar.pug
 
 .text-center
 	h3= user.github.displayName + '\'s Polls'
-
+br
+if mypolls.length > 0
+	.container
+		each poll in mypolls
+			.card
+				- var link = 'poll/' + poll._id
+				- var delink = 'poll/' + poll._id + '/delete'
+					.card-block
+						h5.card-title= poll.name
+						.align-items-start
+							a(class='btn btn-primary btn-sm mypolls-button' href=link) Go to poll
+							a(class='btn btn-danger btn-sm mypolls-button' href=delink) Delete poll
+else
+	.text-center
+		p=	'You have not created any polls.'
+		a(href='/createpoll') Create one here.
 include includes/footer.pug

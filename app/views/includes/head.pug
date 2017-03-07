@@ -6,17 +6,32 @@ html
 			name='viewport'
 			content='width=device-width, initial-scale=1, shrink-to-fit=no'
 		)
-		link(
-			rel='stylesheet'
-			type='text/css' 
-			href='css/bootstrap.min.css'
-		)
-		link(
-			rel="stylesheet" 
-			type="text/css" 
-			href="css/style.css"
-		)
+		
+		if sublink
+			link(
+				rel='stylesheet'
+				type='text/css' 
+				href='../css/bootstrap.min.css'
+			)
+		else
+			link(
+				rel='stylesheet'
+				type='text/css' 
+				href='css/bootstrap.min.css'
+			)
 
+		if sublink
+			link(
+				rel="stylesheet" 
+				type="text/css"
+				href="../css/style.css"
+			)
+		else
+			link(
+				rel="stylesheet" 
+				type="text/css"
+				href="css/style.css"
+			)
 		title= 'Voteapp-5000'
 
 	body

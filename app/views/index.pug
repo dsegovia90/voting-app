@@ -2,11 +2,28 @@ include includes/head.pug
 include includes/navbar.pug
 
 .text-center
-	if user
-		h3= user.github.displayName + '\'s Dashboard'
-	else
-		h3= 'Dashboard'
+	h3= 'Dashboard'
 
 	if user
 		p= 'Welcome ' + user.github.displayName
+
+	if polls.length > 0
+		.container
+			.list-group
+				each poll in polls
+					- var link = 'poll/' + poll._id
+					a(href= link '' class='list-group-item list-group-item-action flex-column align-items-start')
+						.d-flex.w-100.justify-content-between
+							h5.mb-1= poll.name
+							small= "Created " + poll.date_created
+						small= "by " + poll.owner
+	else 
+		.text-center
+			p= "There are no polls created."
+			if user
+				a(href='/createpoll') Create one here.
+			else
+				a(href='/login') Login to create one here.
+
+
 include includes/footer.pug

@@ -6,6 +6,8 @@ var routes = require('./app/routes/index.js')
 var mongoose = require('mongoose')
 var passport = require('passport')
 var session = require('express-session')
+var bodyParser = require('body-parser')
+
 
 // Initialize de App
 var app = express()
@@ -14,6 +16,9 @@ require('./app/config/passport.js')(passport)
 
 mongoose.connect(process.env.MONGO_URI)
 mongoose.Promise = global.Promises
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 // Set view engine to pug
 app.set('view engine', 'pug')

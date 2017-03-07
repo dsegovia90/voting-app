@@ -6,23 +6,23 @@ include includes/navbar.pug
 h3.text-center Create Poll
 
 .container
-	form(action='/createpoll/new')
+	form(action='/createpoll/' method='post')
 		.form-group
 			label(for='poll_name') Poll Name
-			input(type='text' class='form-control' id='poll_name' placeholder='My Super Poll')
+			input(name='poll_name' type='text' class='form-control' id='poll_name' placeholder='My Super Poll')
 		br
 		.form-group
-			label(for='poll_option1') Poll Answer 1
-			input(type='text' class='form-control' id='poll_name' placeholder='Awesome answer 1')
+			label(for='poll_option') Poll Answer 1
+			input(name='poll_options[0]' type='text' class='form-control' id='poll_option1' placeholder='Awesome answer 1')
 		.form-group
 			label(for='poll_option2') Poll Answer 2
-			input(type='text' class='form-control' id='poll_name' placeholder='Awesome answer 2')
+			input(name='poll_options[1]' type='text' class='form-control' id='poll_option2' placeholder='Awesome answer 2')
 		.form-group
-			label(for='poll_option3') Poll Answer 3
-			input(type='text' class='form-control' id='poll_name' placeholder='Awesome answer 3')
+			label( for='poll_option3') Poll Answer 3
+			input(name='poll_options[3]' type='text' class='form-control' id='poll_option3' placeholder='Awesome answer 3')
 		.form-group
 			label(for='poll_option4') Poll Answer 4
-			input(type='text' class='form-control' id='poll_name' placeholder='Awesome answer 4')
+			input(name='poll_options[4]' type='text' class='form-control' id='poll_option4' placeholder='Awesome answer 4')
 		.form-group
 			label(for='submit-btn')
 			input(type='submit' class='btn btn-success' value='Submit')

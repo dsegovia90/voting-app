@@ -1,5 +1,9 @@
 hr
 footer.text-center
 	p &copy; Daniel S. 2017
-script(src='jquery/dist/jquery.min.js' crossorigin='anonymous')
-script(src='js/bootstrap.min.js' crossorigin='anonymous')
+if sublink
+	script(src='../jquery/dist/jquery.min.js' crossorigin='anonymous')
+	script(src='../js/bootstrap.min.js' crossorigin='anonymous')
+else
+	script(src='jquery/dist/jquery.min.js' crossorigin='anonymous')
+	script(src='js/bootstrap.min.js' crossorigin='anonymous')

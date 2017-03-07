@@ -1,5 +1,7 @@
 
+var PollHandler = require('../controllers/pollController.js')
 
+var pollHandler = new PollHandler();	
 
 module.exports = function(app, passport){
 
@@ -17,14 +19,10 @@ module.exports = function(app, passport){
 	});
 
 	app.route('/')
-		.get(function(req, res){
-			res.render('index')
-		})
+		.get(pollHandler.showAll)
 
 	app.route('/mypolls')
-		.get(isLoggedIn, function(req, res){
-			res.render('mypolls')
-		})	
+		.get(isLoggedIn, pollHandler.showMine)	
 
 	app.route('/createpoll')
 		.get(isLoggedIn, function(req, res){	
@@ -54,4 +52,16 @@ module.exports = function(app, passport){
 	  function(req, res) {
 	    res.redirect('/')
   })
+
+
+  // Create new poll
+	app.route('/createpoll')
+		.post(isLoggedIn, pollHandler.createPoll)
+	// Go to poll with :id
+	app.route('/poll/:_id')
+		.get(pollHandler.showOne)
+		.post(pollHandler.vote)
+	// Delete poll with :id (user must be owner, else it won't find the poll to delete)
+	app.route('/poll/:_id/delete')
+		.get(isLoggedIn, pollHandler.deletePoll)
 }

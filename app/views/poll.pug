@@ -1,0 +1,36 @@
+- var sublink = true
+
+include includes/head
+include includes/navbar
+
+.container
+	.row
+		.col
+			.card
+				.card-block
+					h3= 'Poll: ' + poll.name
+					p= ''
+						small= ' By ' + poll.owner 
+					-var i = 1
+					-var action = '/poll/' + poll._id
+					form(action=action method='post')
+						.form-group
+							label(for='selector') Select and Vote!
+								select#selector.form-control(name='selector')
+									each option in poll.options
+										option(value=i-1)= 'Option ' + i + ': ' + option
+										- i++
+						.form-group
+							input(type='submit' class='btn btn-success' value='Submit')
+
+
+
+						//- p= 'Option ' + i + ': ' + option
+						//- -i++
+
+		.col
+			//- insert visual graph
+			
+
+
+include includes/footer
