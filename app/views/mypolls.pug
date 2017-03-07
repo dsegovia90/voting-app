@@ -4,6 +4,9 @@ include includes/navbar.pug
 .text-center
 	h3= user.github.displayName + '\'s Polls'
 br
+
+include includes/flash.pug
+
 if mypolls.length > 0
 	.container
 		each poll in mypolls

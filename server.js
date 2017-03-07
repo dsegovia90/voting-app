@@ -20,6 +20,7 @@ mongoose.Promise = global.Promises
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
+
 // Set view engine to pug
 app.set('view engine', 'pug')
 app.set('views', './app/views')
@@ -32,6 +33,9 @@ app.use(session({
 	resave: false,
 	saveUninitialized: true
 }))
+
+//Flash messages initializer
+app.use(require('flash')())
 
 app.use(passport.initialize())
 app.use(passport.session())

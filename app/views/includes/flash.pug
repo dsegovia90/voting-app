@@ -1,0 +1,7 @@
+.container
+	while message = flash.shift()
+		-var alert = 'alert alert-dismissible fade show alert-' + message.type
+		div(class=alert role='alert')
+			button(type='button' class='close' data-dismiss='alert')
+				span(aria-hidden='true') &times;
+			p=	message.message

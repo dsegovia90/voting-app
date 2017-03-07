@@ -1,5 +1,6 @@
 var Polls = require('../models/polls.js')
 
+
 function PollHandler() {
 
 	this.createPoll = function(req, res){
@@ -53,17 +54,23 @@ function PollHandler() {
 	this.deletePoll = function(req, res) {
 		Polls.remove({_id: req.params._id, owner_id: req.user._id}, function(err){
 			if(err) throw err
+			res.flash('danger', 'Poll deleted.')
 			res.redirect('/mypolls')
 		})
 	}
 
 	this.vote = function(req, res) {
 		console.log(req.body)
-		var query = 'options_votes.' + req.body.selector
+		var selector = req.body.selector
+		var query = 'options_votes.' + selector
+		var option = 1 + parseInt(selector)
+		req.flash('info', 'You voted for option ' + option + '.') 
+
 
 		console.log(typeof req.body.selector)
-		Polls.findOneAndUpdate({ _id: req.params._id}, { $inc: { ['options_votes.'+req.body.selector]: 1 } }, function(err, result){
+		Polls.findOneAndUpdate({ _id: req.params._id}, { $inc: { [query]: 1 } }, function(err, result){
 			if(err) throw err
+
 			res.redirect('/poll/' + req.params._id)
 		})
 

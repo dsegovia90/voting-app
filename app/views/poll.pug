@@ -3,6 +3,9 @@
 include includes/head
 include includes/navbar
 
+#alerts
+	include includes/flash
+
 .container
 	.row
 		.col
@@ -22,14 +25,10 @@ include includes/navbar
 										- i++
 						.form-group
 							input(type='submit' class='btn btn-success' value='Submit')
-
-
-
-						//- p= 'Option ' + i + ': ' + option
-						//- -i++
-
 		.col
-			//- insert visual graph
+			canvas(class='chart chart-doughnut' chart-data='chartData' chart-labels='chartLabels' chart-legend='true')
+			
+
 			
 
 
