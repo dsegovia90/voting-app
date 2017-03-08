@@ -1,6 +1,7 @@
-- var sublink = true
+- var sublink = true  
 
 include includes/head
+
 include includes/navbar
 
 #alerts
@@ -8,7 +9,7 @@ include includes/navbar
 
 .container
 	.row
-		.col
+		.col-12.col-lg-6
 			.card
 				.card-block
 					h3= 'Poll: ' + poll.name
@@ -23,13 +24,48 @@ include includes/navbar
 									each option in poll.options
 										option(value=i-1)= 'Option ' + i + ': ' + option
 										- i++
+						if user
+							a(href='#' data-toggle='collapse' data-target='#hider') Custom Option
+							br
+							.form-group#hider.collapse
+								input(type='text' class='form-control' name='alternative' placeholder='Custom option')
+							br
 						.form-group
 							input(type='submit' class='btn btn-success' value='Submit')
-		.col
-			canvas(class='chart chart-doughnut' chart-data='chartData' chart-labels='chartLabels' chart-legend='true')
+		.col-6.col-lg-4.offset-3.offset-lg-1
+			canvas(id='pollChart' width='100' height='100')
 			
 
 			
+
+script(src='../js/Chart.min.js')
+script(src='../js/random-colors.js')
+script.
+	var labels = '#{poll.options}'
+	labels = labels.split(',')
+	
+	var votes = '#{poll.options_votes}'
+	votes = votes.split(',').map(Number)
+
+	var data = {
+		labels: labels,
+		datasets: [
+		{
+			data: votes,
+			backgroundColor: color,
+			hoverBackgroundColor: color,
+			hoverBorderColor: color,
+			hoverBorderWidth: 2
+		}]
+	};
+
+	var ctx = document.getElementById("pollChart");
+	var pollChart = new Chart(ctx, {
+		type: 'doughnut',
+		data: data,
+		options: {}
+	})
+
 
 
 include includes/footer
